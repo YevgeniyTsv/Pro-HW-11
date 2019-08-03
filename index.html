@@ -1,141 +1,146 @@
 <html>
 
 <head>
-  <title>JAVASCRIPT HW12</title>
+    <title>JAVASCRIPT HW12</title>
 </head>
 
 <body>
-  <script>
-    let taskNumber = 0;
-    //+-1) Есть участок кода! обернуть в try catch нужный участок кода и выбросить ошибку если getResult возвращает undefined
-    console.warn(`Task # ${++taskNumber}`);
+    <script>
+        let taskNumber = 0;
+        //+-1) Есть участок кода! обернуть в try catch нужный участок кода и выбросить ошибку если getResult возвращает undefined
+        console.warn(`Task # ${++taskNumber}`);
 
-    function getResult() {
-      var obj = {
-        name: 'Sergei',
-        lastName: 'Shakhov'
-      }
-      return
-      obj;
-    }
-    try {
-      const a = getResult();
-      if (!a) {
-        throw new Error(`Function 'getResult' returned undefined`);
-      }
-      console.log('RESULT', a);
-    } catch (error) {
-      console.log(error.massage);
-    }
-
-
-    //+2) исправить код чтобы консоль логи показывали от 0 до 10, и написать почему сейчас выводит десять десяток!!
-    console.warn(`Task # ${++taskNumber}`);
-    for (var i = 0; i < 10; i++) {
-      setTimeout(() => console.log(i), 0);
-    }
-    console.log(`10 раз по 1- выводит потому что setTimeout срабатывает в конце, когда зикл пробежался и i
+        function getResult() {
+            var obj = {
+                name: 'Sergei',
+                lastName: 'Shakhov'
+            }
+            return
+            obj;
+        }
+        try {
+            const a = getResult();
+            if (!a) {
+                throw new Error(`Function 'getResult' returned undefined`);
+            }
+            console.log('RESULT', a);
+        } catch (error) {
+            console.log(error.massage);
+        }
+        //+2) исправить код чтобы консоль логи показывали от 0 до 10, и написать почему сейчас выводит десять десяток!!
+        console.warn(`Task # ${++taskNumber}`);
+        for (var i = 0; i < 10; i++) {
+            setTimeout(() => console.log(i), 0);
+        }
+        console.log(`10 раз по 10 выводит потому что setTimeout срабатывает в конце, когда зикл пробежался и i
         уже 10. Для результата от 0 до 10 var меняем на let`);
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => console.log(i), 0);
+        }
+        // +3) Есть код!! В какой последовательности выполнится!
+        console.warn(`Task # ${++taskNumber}`);
 
-    for (let i = 0; i < 10; i++) {
-      setTimeout(() => console.log(i), 0);
-    }
-
-    // +3) Есть код!! В какой последовательности выполнится!
-    console.warn(`Task # ${++taskNumber}`);
-    function getDatas() {
-      return [
-        {
-          name: "Vasia"
-        },
-        {
-          name: "Boria"
-        },
-        {
-          name: "Misha"
-        },
-      ]
-    }
-    const res = getDatas();
-    console.log('RES', res);
-    setTimeout(console.log('settimeout1'), 100);
-    setTimeout(console.log('settimeout'), 10);
-    console.log('One');
-    console.log('two');
-
-    console.log(`Выполнится  res->set->set->One->tw, так как в setTimout передана не функция а console.log, 
+        function getDatas() {
+            return [{
+                    name: "Vasia"
+                },
+                {
+                    name: "Boria"
+                },
+                {
+                    name: "Misha"
+                },
+            ]
+        }
+        const res = getDatas();
+        console.log('RES', res);
+        setTimeout(console.log('settimeout1'), 100);
+        setTimeout(console.log('settimeout'), 10);
+        console.log('One');
+        console.log('two');
+        console.log(`Выполнится  res->set->set->One->tw, так как в setTimout передана не функция а console.log, 
         то он выведится сразу не дожидаясь отчистки колстек`);
+        //+4) Что выведет alert в setTimeOut
+        console.warn(`Task # ${++taskNumber}`);
+        setTimeout(function () {
+            alert(i);
+        }, 100);
+        for (var i = 0; i < 1000000; i++) {}
+        console.log(`выведится 10000000, поскольку setTimeout выведится после того как выполнится цикл `);
+        // +5) Есть функция funct! Сделать из нее функцию конструктор которая создает обьект со свойствами name lastName
+        console.warn(`Task # ${++taskNumber}`);
 
-    //+4) Что выведет alert в setTimeOut
-    console.warn(`Task # ${++taskNumber}`);
-    setTimeout(function () {
-      alert(i);
-    }, 100);
-    for (var i = 0; i < 1000000; i++) {
-    }
-
-    console.log(`выведится 10000000, поскольку setTimeout выведится после того как выполнится цикл `);
-
-
-    // +5) Есть функция funct! Сделать из нее функцию конструктор которая создает обьект со свойствами name lastName
-    console.warn(`Task # ${++taskNumber}`);
-    function funct(name, lastName) {
-      this.name = name;
-      this.lastName = lastName;
-    }
-
-    const user = new funct('Aston', 'Martin')
-    for (let key in user) {
-      console.log(`${key}: ${user[key]}`);
-    }
-
-
-    // 6) Создать функцию конструктор, которая принимает обьект и берет только lastName и position и создает обьект с этих свойств
-    console.warn(`Task # ${++taskNumber}`);
-
-    function factory({lastName, position}) {
-      return {
-        lastName,
-        position
-      };
-    }
-    const newObject = factory({ name: 'Sergei', lastName: 'Shakhov', height: 188, position: 'Software developer' });
-
-    for (const key in newObject) {
-      console.log(`${key}: ${newObject[key]}`);
-    }
-
-
-    // +7)  Создать функцию конструктор, которая принимает два свойства name, lastName конкатенирует их и сохраняет в замыкании в переменной fullName
-    // random свойства не будет в обьекте ОБРАТИТЕ ВНИМАНИЕ потому что есть return!! Если не было бы return то был бы обьект с одним свойством
-    console.warn(`Task # ${++taskNumber}`);
-    function factory() {
-      var fullName;
-      this.random = Math.random();
-      return {
-        name: 'ZINA Borisova',
-        getRealName: function () {
-          return fullName;
+        function funct(name, lastName) {
+            this.name = name;
+            this.lastName = lastName;
         }
-      };
-    }
-    new factory(name, lastName);
-    // 8) Есть код! Почему строчка с комментарием покажет {misha: NADUSHA}! Сделать так чтобы a.getObject(); вернул {misha: 'misha'}
-    // то есть должны быть независимые обьекты!!
-    console.warn(`Task # ${++taskNumber}`);
-    function newFactory(obj) {
-      var object = obj;
-      return {
-        getObject: function () {
-          return {...object};
+        const user = new funct('Aston', 'Martin')
+        for (let key in user) {
+            console.log(`${key}: ${user[key]}`);
         }
-      };
-    }
-    var a = newFactory({ misha: 'misha' });
-    var k = a.getObject();
-    k.misha = 'NADUSHA';
-    a.getObject(); // КОММЕНТАРИЙ!!! покажет NADUSHA 
-  </script>
+        // +6) Создать функцию конструктор, которая принимает обьект и берет только lastName и position и создает обьект с этих свойств
+        console.warn(`Task # ${++taskNumber}`);
+
+        function factory({
+            lastName,
+            position
+        }) {
+            return {
+                lastName,
+                position
+            };
+        }
+        const newObject = factory({
+            name: 'Sergei',
+            lastName: 'Shakhov',
+            height: 188,
+            position: 'Software developer'
+        });
+        for (const key in newObject) {
+            console.log(`${key}: ${newObject[key]}`);
+        }
+        // +7)  Создать функцию конструктор, которая принимает два свойства name, lastName конкатенирует их и сохраняет в замыкании в переменной fullName
+        // random свойства не будет в обьекте ОБРАТИТЕ ВНИМАНИЕ потому что есть return!! Если не было бы return то был бы обьект с одним свойством
+        console.warn(`Task # ${++taskNumber}`);
+
+        function factory() {
+            var fullName = name + ' ' + lastName;
+            this.random = Math.random();
+            return {
+                name: 'ZINA Borisova',
+                getRealName: function () {
+                    return fullName;
+                }
+            };
+        }
+        let name = 'Aston',
+            lastName = 'Martin';
+        const newFactory1 = new factory(name, lastName);
+        console.log(`name: ${newFactory1.name}\nreal name: ${newFactory1.getRealName()}`);
+
+
+
+        // +8) Есть код! Почему строчка с комментарием покажет {misha: NADUSHA}! Сделать так чтобы a.getObject(); вернул {misha: 'misha'}
+        // то есть должны быть независимые обьекты!!
+        console.warn(`Task # ${++taskNumber}`);
+
+        function newFactory(obj) {
+            var object = obj;
+            return {
+                getObject: function () {
+                    return {
+                        ...object
+                    };
+                }
+            };
+        }
+        var a = newFactory({
+            misha: 'misha'
+        });
+        var k = a.getObject();
+        k.misha = 'NADUSHA';
+        a.getObject(); // КОММЕНТАРИЙ!!! покажет NADUSHA 
+    </script>
 </body>
 
 </html>
