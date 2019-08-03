@@ -82,7 +82,7 @@
         // +6) Создать функцию конструктор, которая принимает обьект и берет только lastName и position и создает обьект с этих свойств
         console.warn(`Task # ${++taskNumber}`);
 
-        function factory({
+        function factory1({
             lastName,
             position
         }) {
@@ -91,7 +91,7 @@
                 position
             };
         }
-        const newObject = factory({
+        const newObject = factory1({
             name: 'Sergei',
             lastName: 'Shakhov',
             height: 188,
